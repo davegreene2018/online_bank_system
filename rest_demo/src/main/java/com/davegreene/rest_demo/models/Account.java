@@ -33,6 +33,14 @@ public class Account {
         this.accounts = accounts;
     }
 
+    public Account(int accId, String sortCode, int accNum, double curBal) {
+        this.accId = accId;
+        this.sortCode = sortCode;
+        this.accNum = accNum;
+        this.curBal = curBal;
+    }
+
+
     public int getAccId() {
         return accId;
     }

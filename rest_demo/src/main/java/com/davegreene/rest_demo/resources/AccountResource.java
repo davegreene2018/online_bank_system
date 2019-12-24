@@ -1,9 +1,7 @@
 package com.davegreene.rest_demo.resources;
 
 import com.davegreene.rest_demo.models.Account;
-import com.davegreene.rest_demo.models.Customer;
 import com.davegreene.rest_demo.services.AccountService;
-import com.davegreene.rest_demo.services.CustomerService;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;

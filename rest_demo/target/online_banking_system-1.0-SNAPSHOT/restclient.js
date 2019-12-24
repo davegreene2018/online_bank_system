@@ -164,7 +164,7 @@ $(document).ready(function(){
   // Edit customer button
   $(document).on('click', '.function_edit a', function(e){
     e.preventDefault();
-    // Get animal information
+    // Get customer information
     //show_loading_message();
     var id      = $(this).data('id');
     var url = 'api/customer/'+id;
