@@ -6,12 +6,14 @@
 package com.davegreene.rest_demo.databases;
 
 
+import com.davegreene.rest_demo.models.Account;
 import com.davegreene.rest_demo.models.Customer;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Database {
     public static List<Customer> customerDB = new ArrayList<>();
+    public static List<Account> accountDB = new ArrayList<>();
     public static boolean init = true;
      
     // Lets create a constructor for the class
@@ -35,6 +37,10 @@ public class Database {
     
     public static List<Customer> getCustomerDB() {
         return  customerDB;
+    }
+    
+    public static List<Account> getAccountDB() {
+        return  accountDB;
     }
     
 }

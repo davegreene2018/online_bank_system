@@ -50,6 +50,9 @@ $(document).ready(function(){
   });
   var form_customer = $('#form_customer');
   form_customer.validate();
+  //login
+  var form_login = $('#form_login');
+  form_login.validate();
 
   // Show message
   function show_message(message_text, message_type){
@@ -101,9 +104,7 @@ $(document).ready(function(){
       hide_lightbox();
     }
   });
-   // login function
-
-
+  
   
  
   // Hide iPad keyboard
@@ -255,4 +256,3 @@ $(document).ready(function(){
     }
   });
 });
-//added extra}
