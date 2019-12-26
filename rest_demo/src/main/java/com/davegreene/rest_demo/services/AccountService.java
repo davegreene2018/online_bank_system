@@ -5,8 +5,7 @@
  */
 package com.davegreene.rest_demo.services;
 
-import com.davegreene.rest_demo.models.Customer;
-import com.davegreene.rest_demo.models.Customer;
+
 import com.davegreene.rest_demo.databases.Database;
 import com.davegreene.rest_demo.models.Account;
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ public class AccountService {
     }
     
     public Account createAccount(Account m) {
-	m.setAccId(accountList.size() + 1);
+	m.setId(accountList.size() + 1);
 	accountList.add(m);
 	return m;
     }

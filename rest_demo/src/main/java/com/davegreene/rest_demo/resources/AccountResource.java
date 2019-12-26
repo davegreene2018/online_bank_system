@@ -23,7 +23,7 @@ public class AccountResource {
     AccountService accountService = new AccountService();
   
     @GET
-    @Path("/customer")
+    @Path("/account")
     public List<Account> getAccounts() {
         System.out.println("Getting accounts");
         List<Account> accountList = accountService.getAllAccount();

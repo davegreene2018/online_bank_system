@@ -1,21 +1,16 @@
 $(document).ready(function(){
   
   // On page load: datatable
-  var table_customers = $('#table_customers').DataTable({
+  var table_accounts = $('#table_accounts').DataTable({
     processing: true,
-    ajax:{url:"api/customer",dataSrc:""},
+    ajax:{url:"api/account",dataSrc:""},
     "columns": [
-      { "data": "accountName" },
-      { "data": "address"},
-      { "data": "email" },
-      { "data": "password"},
-      { "data": "dateAdded",    
-          "render": function (data) {
-            var date = new Date(data);
-            var month = date.getMonth() + 1;
-            return date.getDate() + "/" + (month.toString().length > 1 ? month : "0" + month) + "/" + date.getFullYear();
-          }
-      },
+      { "data": "id" },
+      { "data": "sortCode"},
+      { "data": "accNum" },
+      { "data": "curBal"},
+     // { "data": "transactions"},
+     
       { "data": "functions","sClass": "functions" }
     ],
     "aoColumnDefs": [
@@ -48,11 +43,10 @@ $(document).ready(function(){
       $(element).parent('.field_container').addClass('valid').removeClass('error');
     }
   });
-  var form_customer = $('#form_customer');
-  form_customer.validate();
-  //login
-  var form_login = $('#form_login');
-  form_login.validate();
+  var form_account = $('#form_account');
+  form_account.validate();
+  
+  
 
   // Show message
   function show_message(message_text, message_type){
@@ -114,31 +108,33 @@ $(document).ready(function(){
   }
 
   // Add customer button
-  $(document).on('click', '#add_customer', function(e){
+  $(document).on('click', '#add_account', function(e){
     e.preventDefault();
-    $('.lightbox_content h2').text('Add Customer');
-    $('#form_customer button').text('Add Customer');
-    $('#form_customer').attr('class', 'form add');
-    $('#form_customer').attr('data-id', '');
-    $('#form_customer .field_container label.error').hide();
-    $('#form_customer .field_container').removeClass('valid').removeClass('error');
-    $('#form_customer #acount_name').val('');
-    $('#form_customer #address').val('');
-    $('#form_customer #email').val('');
-    $('#form_customer #password').val('');
+    $('.lightbox_content h2').text('Add Account');
+    $('#form_account button').text('Add Account');
+    $('#form_account').attr('class', 'form add');
+    $('#form_account').attr('data-id', '');
+    $('#form_account .field_container label.error').hide();
+    $('#form_account .field_container').removeClass('valid').removeClass('error');
+    $('#form_account #id').val('');
+    $('#form_account #sortCode').val('');
+    $('#form_account #accNum').val('');
+    $('#form_account #curBal').val('');
+     //$('#form_account #transactions').val('');
+      //$('#form_account #accounts').val('');
     show_lightbox();
   });
 
-  $(document).on('submit', '#form_customer.add', function(e){
+  $(document).on('submit', '#form_account.add', function(e){
     e.preventDefault();
     // Validate form
-    if (form_customer.valid() === true){
+    if (form_account.valid() === true){
       hide_ipad_keyboard();
       hide_lightbox();
       show_loading_message();
-      var form_data = $('#form_customer').serializeJSON();
+      var form_data = $('#form_account').serializeJSON();
       var request   = $.ajax({
-        url:          'api/customer/',
+        url:          'api/account/',
         cache:        false,
         processData : false,
         data:         form_data,
@@ -147,10 +143,10 @@ $(document).ready(function(){
         type:         'post'
       });
       request.done(function(output){
-          $('#table_customers').dataTable().api().ajax.reload(function(){
+          $('#table_accounts').dataTable().api().ajax.reload(function(){
             hide_loading_message();
-            var account_name = $('#account_name').val();
-            show_message(account_name + " added successfully.", 'success');
+            var acc_Num = $('#accNum').val();
+            show_message(acc_Num + " added successfully.", 'success');
           }, true);
       });
  
@@ -167,23 +163,25 @@ $(document).ready(function(){
     // Get customer information
     //show_loading_message();
     var id      = $(this).data('id');
-    var url = 'api/customer/'+id;
+    var url = 'api/account/'+id;
     var request = $.ajax({
       url:          url,
       contentType:  'application/json',
       type:         'GET'
     });
     request.done(function(output){
-      $('.lightbox_content h2').text('Edit Customer');
-      $('#form_customer button').text('Edit Customer');
-      $('#form_customer').attr('class', 'form edit');
-      $('#form_customer').attr('data-id', id);
-      $('#form_customer .field_container label.error').hide();
-      $('#form_customer .field_container').removeClass('valid').removeClass('error');
-      $('#form_customer #accountName').val(output.accountName);
-      $('#form_customer #address').val(output.address);
-      $('#form_customer #email').val(output.email);
-      $('#form_customer #password').val(output.password);
+      $('.lightbox_content h2').text('Edit Account');
+      $('#form_account button').text('Edit Account');
+      $('#form_account').attr('class', 'form edit');
+      $('#form_account').attr('data-id', id);
+      $('#form_account .field_container label.error').hide();
+      $('#form_account .field_container').removeClass('valid').removeClass('error');
+      $('#form_account #id').val(output.id);
+      $('#form_account #sortCode').val(output.sortCode);
+      $('#form_account #accNum').val(output.accNum);
+      $('#form_account #curBal').val(output.curBal);
+      //$('#form_account #transactions').val(output.transactions);
+      //$('#form_account #accounts').val(output.accounts);
       hide_loading_message();
       show_lightbox();
     });
@@ -194,18 +192,18 @@ $(document).ready(function(){
   });
   
   // Edit customer submit form
-  $(document).on('submit', '#form_customer.edit', function(e){
+  $(document).on('submit', '#form_account.edit', function(e){
     e.preventDefault();
     // Validate form
-    if (form_customer.valid() === true){
-      // Post animal information
+    if (form_account.valid() === true){
+      // Post account information
       hide_ipad_keyboard();
       hide_lightbox();
       show_loading_message();
-      var id        = $('#form_customer').attr('data-id');
-      var form_data = $('#form_customer').serializeJSON();
+      var id        = $('#form_account').attr('data-id');
+      var form_data = $('#form_account').serializeJSON();
       var request   = $.ajax({
-        url:          'api/customer/' + id,
+        url:          'api/account/' + id,
         cache:        false,
         processData : false,
         data:         form_data,
@@ -215,10 +213,10 @@ $(document).ready(function(){
       });
       request.done(function(output){
         // Reload data
-        $('#table_customers').dataTable( ).api().ajax.reload(function(){
+        $('#table_accounts').dataTable( ).api().ajax.reload(function(){
             hide_loading_message();
-            var account_name = $('#name').val();
-            show_message("Customer '" + account_name + "' successfully edited.", 'success');
+             var acc_Num = $('#accNum').val();
+            show_message("Account '" + acc_Num + "' successfully edited.", 'success');
         }, true);
       });
       request.fail(function(jqXHR, textStatus){
@@ -231,12 +229,12 @@ $(document).ready(function(){
   // Delete customer
   $(document).on('click', '.function_delete a', function(e){
     e.preventDefault();
-    var account_name = $(this).data('name');
-    if (confirm("Are you sure you want to delete '" + account_name + "'?")){
+    var id = $(this).data('id');
+    if (confirm("Are you sure you want to delete '" + id + "'?")){
       show_loading_message();
-      var id      = $(this).data('id');
+      var acc_Num      = $(this).data('name');
       var request = $.ajax({
-        url:          'api/customer/' + id,
+        url:          'api/account/' + id,
         cache:        false,
         dataType:     'json',
         contentType:  'application/json; charset=utf-8',
@@ -244,9 +242,9 @@ $(document).ready(function(){
       });
 
       request.done(function(output){
-        $('#table_customers').dataTable( ).api().ajax.reload(function(){
+        $('#table_accounts').dataTable( ).api().ajax.reload(function(){
             hide_loading_message();
-            show_message("Customer '" + account_name + "' deleted successfully.", 'success');
+            show_message("Account '" + acc_Num + "' deleted successfully.", 'success');
         }, true);
       });
       request.fail(function(jqXHR, textStatus){
