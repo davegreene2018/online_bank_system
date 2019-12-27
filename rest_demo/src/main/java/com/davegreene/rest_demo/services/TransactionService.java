@@ -7,6 +7,7 @@ package com.davegreene.rest_demo.services;
 
 
 import com.davegreene.rest_demo.databases.Database;
+import com.davegreene.rest_demo.models.Account;
 import com.davegreene.rest_demo.models.Transaction;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,8 @@ public class TransactionService {
           
     Database d = new Database();
     private List<Transaction> transactionList = d.getTransactionDB();
+    private List<Account> accountList = d.getAccountDB();
+    
     
     public List<Transaction> getAllTransaction() {
         return transactionList;
@@ -43,6 +46,23 @@ public class TransactionService {
        transactionList.remove(transaction);
        return transaction;
     }
+    public Account withdrawal(int id, Account m){
+        accountList.set(id-1,m);
+       return m;
+        
+        
+    }
     
+    public Account deposit(int id, Account m){
+       accountList.set(id-1,m);
+       return m;     
+    }
+    
+
+    public Account transfer(int id, Account m){
+        
+       accountList.set(id-1,m);
+       return m;     
+    }
     
 }
