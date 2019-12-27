@@ -176,7 +176,7 @@ $(document).ready(function(){
       $('#form_account').attr('data-id', id);
       $('#form_account .field_container label.error').hide();
       $('#form_account .field_container').removeClass('valid').removeClass('error');
-      $('#form_account #id').val(output.id);
+      $('#form_account #accountId').val(output.accountId);
       $('#form_account #sortCode').val(output.sortCode);
       $('#form_account #accNum').val(output.accNum);
       $('#form_account #curBal').val(output.curBal);
@@ -215,7 +215,7 @@ $(document).ready(function(){
         // Reload data
         $('#table_accounts').dataTable( ).api().ajax.reload(function(){
             hide_loading_message();
-             var acc_Num = $('#accNum').val();
+             var acc_Num = $('#name').val();
             show_message("Account '" + acc_Num + "' successfully edited.", 'success');
         }, true);
       });

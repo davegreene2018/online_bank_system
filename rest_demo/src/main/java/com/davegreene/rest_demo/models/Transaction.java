@@ -13,38 +13,39 @@ import java.util.Date;
  */
 public class Transaction {
     
-    private int transId;
+    private int id;
     //transType include: debit,credit
     private String transType;
     //private Date TransCreated;
     private Date date;
     private String desc;
     private double postBalance;
+    private String functions;
 
     public Transaction() {
     }
 
-    public Transaction(int transId, String transType, Date date, String desc, double postBalance) {
-        this.transId = transId;
+    public Transaction(int id, String transType, Date date, String desc, double postBalance) {
+        this.id = id;
         this.transType = transType;
         this.date = date;
         this.desc = desc;
         this.postBalance = postBalance;
     }
 
-    public Transaction(int transId, String transType, String desc, double postBalance) {
-        this.transId = transId;
+    public Transaction(int id, String transType, String desc, double postBalance) {
+        this.id = id;
         this.transType = transType;
         this.desc = desc;
         this.postBalance = postBalance;
     }
 
     public int getTransId() {
-        return transId;
+        return id;
     }
 
-    public void setTransId(int transId) {
-        this.transId = transId;
+    public void setTransId(int id) {
+        this.id = id;
     }
 
     public String getTransType() {
@@ -79,6 +80,16 @@ public class Transaction {
         this.postBalance = postBalance;
     }
     
+    public String getFunctions() {
+        functions = "<div class='function_buttons'><ul>";
+        functions += "<li class='function_edit'><a data-id='"+id+" 'data-name='"+transType+"'><span>Edit</span></a></li>";
+        functions += "<li class='function_delete'><a data-id='"+id+" 'data-name='"+transType+"'><span>Delete</span></a></li>";
+        functions += "</ul></div>";
+        return functions;
+    }
     
+    private void setFunctions(String functions) {
+        // dummy setter 
+    }
     
 }

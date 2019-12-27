@@ -32,6 +32,8 @@ public class TransactionService {
     }
     
     public Transaction updateTransaction(int id, Transaction m) {
+       Date date = transactionList.get(id-1).getDate();
+       m.setDate(date);
        transactionList.set(id-1,m);
        return m;
     }

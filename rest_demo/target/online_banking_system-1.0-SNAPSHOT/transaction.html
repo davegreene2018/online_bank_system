@@ -12,7 +12,7 @@
     <script charset="utf-8" src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
     <script charset="utf-8" src="//cdn.jsdelivr.net/jquery.validation/1.13.1/jquery.validate.min.js"></script>
     <script src="jquery.serialize-object.js"></script>
-    <script charset="utf-8" src="restclient.js"></script>
+    <script charset="utf-8" src="restclient_transactions.js"></script>
   </head>
   <body>
 
@@ -20,18 +20,17 @@
 
       <h1>Online Banking System</h1>
 
-      <button type="button" class="button" id="add_customer">Add New Customer</button>
+      <button type="button" class="button" id="add_transaction">Add New Transaction</button>
        <button class="button" onclick="window.location.href = 'index.html';">Back</button>
       
-      <table class="datatable" id="table_customers">
+      <table class="datatable" id="table_transactions">
         <thead>
           <tr>
-            <th>Acc Id</th>
-            <th>Sort Code</th>
-            <th>Account Number</th>
-            <th>Ballance</th>
-            <th>Transactions</th>
-             <th>Accounts</th>
+            <th>Trans Id</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Amount</th>
             <th></th>
           </tr>
         </thead>
@@ -48,47 +47,36 @@
       <div class="lightbox_close"></div>
       <div class="lightbox_content">
         
-        <h2>Add New Customer</h2>
-        <form class="form add" id="form_account" data-id="" novalidate>
+        <h2>Add New Transaction</h2>
+        <form class="form add" id="form_transaction" data-id="" novalidate>
           <div class="input_container">
-            <label for="accId">account id: <span class="required">*</span></label>
+            <label for="transId">Transaction id: <span class="required">*</span></label>
             <div class="field_container">
-              <input type="text" class="text" name="accid" id="accid" value="" required>
-            </div>
-          </div>
-          <div class="input_container">
-            <label for="sortCode">Sort Code: <span class="required">*</span></label>
-            <div class="field_container">
-              <input type="text" class="text" name="sortCode" id="sortCode" value="" required>
+              <input type="text" class="text" name="transId" id="transId" value="" required>
             </div>
           </div>
           <div class="input_container">
-            <label for="accNum">accNum: <span class="required">*</span></label>
+            <label for="transType">Transaction: <span class="required">*</span></label>
             <div class="field_container">
-              <input type="text" class="text" name="accNum" id="accNum" value="" required>
+              <input type="text" class="text" name="transType" id="transType" value="" required>
             </div>
           </div>
           <div class="input_container">
-            <label for="curBal">Balance: <span class="required">*</span></label>
+            <label for="desc">Description: <span class="required">*</span></label>
             <div class="field_container">
-              <input type="text" class="text" name="curBal" id="curBal" value="" required>
+              <input type="text" class="text" name="desc" id="desc" value="" required>
             </div>
           </div>
-            <div class="input_container">
-            <label for="transactions">Transaction: <span class="required">*</span></label>
+          <div class="input_container">
+            <label for="curBal">Amount: <span class="required">*</span></label>
             <div class="field_container">
-              <input type="text" class="text" name="transactions" id="transactions" value="" required>
+              <input type="text" class="text" name="postBalance" id="postBalance" value="" required>
             </div>
           </div>
-            <div class="input_container">
-            <label for="accounts">Accounts: <span class="required">*</span></label>
-            <div class="field_container">
-              <input type="text" class="text" name="accounts" id="accounts" value="" required>
-            </div>
-          </div>
+            
 
           <div class="button_container">
-            <button type="submit">Add Account</button>
+            <button type="submit">Add Transaction</button>
           </div>
         </form>
       </div>

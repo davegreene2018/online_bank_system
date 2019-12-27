@@ -32,6 +32,8 @@ public class AccountService {
     }
     
     public Account updateAccount(int id, Account m) {
+       Date date = accountList.get(id-1).getDate();
+       m.setDate(date);
        accountList.set(id-1,m);
        return m;
     }

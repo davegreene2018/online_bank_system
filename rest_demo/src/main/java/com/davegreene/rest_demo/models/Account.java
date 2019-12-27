@@ -19,7 +19,7 @@ public class Account {
     private String sortCode;
     private int accNum;
     private double curBal;
-    private Date dateAdded;
+    private Date date;
     private List<Transaction> transactions;
     private List<Account> accounts;
     private String functions;
@@ -32,7 +32,7 @@ public class Account {
         this.sortCode = sortCode;
         this.accNum = accNum;
         this.curBal = curBal;
-        this.dateAdded = new Date();
+        this.date = new Date();
         this.transactions = transactions;
         this.accounts = accounts;
     }
@@ -77,7 +77,14 @@ public class Account {
     public void setCurBal(double curBal) {
         this.curBal = curBal;
     }
+    
+    public Date getDate() {
+        return date;
+    }
 
+    public void setDate(Date date) {
+        this.date = date;
+    }
     
     public List<Transaction> getTransactions() {
         return transactions;
