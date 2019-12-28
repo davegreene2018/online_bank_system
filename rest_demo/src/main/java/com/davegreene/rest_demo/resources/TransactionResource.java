@@ -51,6 +51,22 @@ public class TransactionResource {
 	return transactionService.createTransaction(m);
     }
     
+    @POST
+    @Path("/deposit/{ammount}")
+    public Transaction postDeposit (@PathParam("accId") int accId,@PathParam("ammount") double ammount) {
+        System.out.println("Creating new deposit");
+	return transactionService.createDeposit(accId,ammount);
+        
+    }
+    
+    @POST
+    @Path("/withdraw/{ammount}")
+    public Transaction postWithdraw (@PathParam("accId") int accId,@PathParam("ammount") double ammount) {
+        System.out.println("Creating new withdraw");
+	return transactionService.createDeposit(accId,ammount);
+        
+    }
+    
     @DELETE 
     @Path("/transaction/{transactionId}")
     public Transaction deleteTransaction(@PathParam("transactionId") int id) {

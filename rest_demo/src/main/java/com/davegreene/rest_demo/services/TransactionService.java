@@ -31,9 +31,17 @@ public class TransactionService {
     public Transaction createTransaction(Transaction m) {
 	m.setTransId(transactionList.size() + 1);
 	transactionList.add(m);
+
 	return m;
     }
-    
+     public Transaction createUserTransaction(int id, Transaction m) {
+	m.setTransId(transactionList.size() + 1);
+	transactionList.add(m);
+        accountList.get(id-1).setCurBal(m.getPostBalance());
+        accountList.get(id-1).getTransactions().add((javax.transaction.Transaction) m);
+        
+	return m;
+    }
     public Transaction updateTransaction(int id, Transaction m) {
        Date date = transactionList.get(id-1).getDate();
        m.setDate(date);
@@ -46,16 +54,24 @@ public class TransactionService {
        transactionList.remove(transaction);
        return transaction;
     }
-    public Account withdrawal(int id, Account m){
-        accountList.set(id-1,m);
-       return m;
-        
-        
+    public Transaction createDeposit(int id, double ammount) {
+	double postBalance = accountList.get(id).getCurBal() + ammount;
+        Transaction m = new Transaction(1,"Credit", "Deposit" + ammount, postBalance);
+        return createUserTransaction(id, m);
     }
-    
-    public Account deposit(int id, Account m){
-       accountList.set(id-1,m);
-       return m;     
+     
+     public Transaction createWithdraw(int id, double ammount) {
+	double postBalance = accountList.get(id).getCurBal() - ammount;
+        Transaction m = new Transaction(1,"Credit", "Withdraw" + ammount, postBalance);
+        return createUserTransaction(id, m);
+    }
+     
+     public Transaction createTransfer(int fromAccId, int toAccId, double ammount) {
+	double fromPostBalance = accountList.get(fromAccId).getCurBal() - ammount;
+        double toPostBalance = accountList.get(toAccId).getCurBal() + ammount;
+        Transaction fromTransfer = new Transaction(1,"Debit", "Transfer" + ammount, fromPostBalance);
+         Transaction toTransfer = new Transaction(1,"Debit", "Transfer" + ammount, toPostBalance);
+        return createUserTransaction(fromAccId, fromTransfer);
     }
     
 
@@ -64,5 +80,7 @@ public class TransactionService {
        accountList.set(id-1,m);
        return m;     
     }
+    
+    
     
 }
