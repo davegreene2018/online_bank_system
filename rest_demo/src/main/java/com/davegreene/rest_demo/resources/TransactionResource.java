@@ -67,14 +67,6 @@ public class TransactionResource {
         
     }
     
-  //  @POST
-    //@Path("/transfer/{ammount}/{toAccId}")
-    //public Transaction postTransfer (@PathParam("accId") int accId,@PathParam("ammount") double ammount) {
-      //  System.out.println("Creating new withdraw");
-	//return transactionService.createTransfer(accId,ammount);
-        
-  //  }
-    
     @DELETE 
     @Path("/transaction/{transactionId}")
     public Transaction deleteTransaction(@PathParam("transactionId") int id) {

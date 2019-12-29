@@ -23,14 +23,19 @@ public class Database {
       if (init) {
         /// customers  
         Customer a1 = new Customer(1,"Dave Greene", "Dublin 24","dave@gmail.com","dave2019");
+        a1.setId(1);
         customerDB.add(a1);
-        Customer a2 = new Customer(2,"John Brennan", "Dublin","john@gmail.com","john2019");   
+        Customer a2 = new Customer(2,"John Brennan", "Dublin","john@gmail.com","john2019");
+        a2.setId(2);
          customerDB.add(a2);
         Customer a3 = new Customer(3,"Joseph Fahey ", "Dublin","Joseph@gmail.com","Joseph2019");
+        a3.setId(3);
          customerDB.add(a3);
         Customer a4 = new Customer(4,"Liyuan Zhang", "Dublin","Liyuan@gmail.com","Liyuan2019");
+        a4.setId(4);
          customerDB.add(a4);
         Customer a5 = new Customer(5,"Ronan Murray", "Dublin","Ronan@gmail.com","Ronan2019");
+        a5.setId(5);
          customerDB.add(a5);
          
         /// accounts 

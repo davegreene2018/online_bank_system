@@ -5,7 +5,7 @@ $(document).ready(function(){
     processing: true,
     ajax:{url:"api/account",dataSrc:""},
     "columns": [
-      { "data": "accId" },
+      { "data": "id" },
       { "data": "sortCode"},
       { "data": "accNum" },
       { "data": "curBal"},
@@ -162,8 +162,8 @@ $(document).ready(function(){
     e.preventDefault();
     // Get customer information
     //show_loading_message();
-    var accId      = $(this).data('accId');
-    var url = 'api/account/'+accId;
+    var id      = $(this).data('id');
+    var url = 'api/account/'+id;
     var request = $.ajax({
       url:          url,
       contentType:  'application/json',
@@ -173,7 +173,7 @@ $(document).ready(function(){
       $('.lightbox_content h2').text('Edit Account');
       $('#form_account button').text('Edit Account');
       $('#form_account').attr('class', 'form edit');
-      $('#form_account').attr('data-id', accId);
+      $('#form_account').attr('data-id', id);
       $('#form_account .field_container label.error').hide();
       $('#form_account .field_container').removeClass('valid').removeClass('error');
       $('#form_account #accountId').val(output.accountId);
@@ -200,10 +200,10 @@ $(document).ready(function(){
       hide_ipad_keyboard();
       hide_lightbox();
       show_loading_message();
-      var accId        = $('#form_account').attr('data-id');
+      var id        = $('#form_account').attr('data-id');
       var form_data = $('#form_account').serializeJSON();
       var request   = $.ajax({
-        url:          'api/account/' + accId,
+        url:          'api/account/' + id,
         cache:        false,
         processData : false,
         data:         form_data,
@@ -229,12 +229,12 @@ $(document).ready(function(){
   // Delete customer
   $(document).on('click', '.function_delete a', function(e){
     e.preventDefault();
-    var accId = $(this).data('accId');
-    if (confirm("Are you sure you want to delete '" + accId + "'?")){
+    var id = $(this).data('id');
+    if (confirm("Are you sure you want to delete '" + id + "'?")){
       show_loading_message();
       var acc_Num      = $(this).data('name');
       var request = $.ajax({
-        url:          'api/account/' + accId,
+        url:          'api/account/' + id,
         cache:        false,
         dataType:     'json',
         contentType:  'application/json; charset=utf-8',

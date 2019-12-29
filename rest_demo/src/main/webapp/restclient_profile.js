@@ -4,7 +4,7 @@ $(document).ready(function(){
   var table_customers = $('#table_customers').DataTable({
     processing: true,
     
-    ajax:{url:"api/customer",dataSrc:""},
+    ajax:{url:"api/customer/{customerId}",dataSrc:""},
     "columns": [
       { "data": "accountName" },
       { "data": "address"},

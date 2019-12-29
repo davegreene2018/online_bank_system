@@ -21,25 +21,25 @@ public class AccountService {
         return accountList;
     }
         
-    public Account getAccount(int accId) {
-        return accountList.get(accId-1);
+    public Account getAccount(int id) {
+        return accountList.get(id-1);
     }
     
     public Account createAccount(Account m) {
-	m.setAccId(accountList.size() + 1);
+	m.setId(accountList.size() + 1);
 	accountList.add(m);
 	return m;
     }
     
-    public Account updateAccount(int accId, Account m) {
-       Date date = accountList.get(accId-1).getDate();
+    public Account updateAccount(int id, Account m) {
+       Date date = accountList.get(id-1).getDate();
        m.setDate(date);
-       accountList.set(accId-1,m);
+       accountList.set(id-1,m);
        return m;
     }
    
-    public Account deleteAccount(int accId) {
-       Account account = accountList.get(accId-1);
+    public Account deleteAccount(int id) {
+       Account account = accountList.get(id-1);
        accountList.remove(account);
        return account;
     }

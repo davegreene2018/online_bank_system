@@ -12,7 +12,8 @@
     <script charset="utf-8" src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
     <script charset="utf-8" src="//cdn.jsdelivr.net/jquery.validation/1.13.1/jquery.validate.min.js"></script>
     <script src="jquery.serialize-object.js"></script>
-    <script charset="utf-8" src="restclient.js"></script>
+        <script charset="utf-8" src="restclient.js"></script>
+<!--    <script src="login.js"></script>-->
   </head>
   <body>
 
@@ -22,15 +23,8 @@
 
       <button class="button" onclick="window.location.href = 'index.html';">Back</button>
       
-      
-
-  
-     
-     
-   
-      
         <h1>Login</h1>
-        <form class="login">
+        <form id="login_customer" class="login">
           <div class="input_container">
             <label for="email">Email: <span class="required">*</span></label>
             <div class="field_container">
@@ -40,7 +34,8 @@
           <div class="input_container">
             <label for="password">Password: <span class="required">*</span></label>
             <div class="field_container">
-              <input type="text" class="text" name="password" id="password" value="" required>
+              <input type="password" class="text" name="password" id="password" value="" required>
+             <!--<input type="checkbox" onclick="pwShow()">Show Password-->
             </div>
           </div>
 

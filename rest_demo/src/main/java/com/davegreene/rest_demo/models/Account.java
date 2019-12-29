@@ -14,8 +14,8 @@ import javax.transaction.Transaction;
  * @author Daveg
  */
 public class Account {
-    //
-    private int accId;
+    
+    private int id;
     private String sortCode;
     private int accNum;
     private double curBal;
@@ -27,8 +27,8 @@ public class Account {
     public Account() {
     }
 
-    public Account(int accId, String sortCode, int accNum, double curBal, List<Transaction> transactions, List<Account> accounts) {
-        this.accId = accId;
+    public Account(int id, String sortCode, int accNum, double curBal, List<Transaction> transactions, List<Account> accounts) {
+        this.id = id;
         this.sortCode = sortCode;
         this.accNum = accNum;
         this.curBal = curBal;
@@ -37,8 +37,8 @@ public class Account {
         this.accounts = accounts;
     }
 
-    public Account(int accId, String sortCode, int accNum, double curBal) {
-        this.accId = accId;
+    public Account(int id, String sortCode, int accNum, double curBal) {
+        this.id = id;
         this.sortCode = sortCode;
         this.accNum = accNum;
         this.curBal = curBal;
@@ -46,12 +46,12 @@ public class Account {
     }
 
 
-    public int getAccId() {
-        return accId;
+    public int getId() {
+        return id;
     }
 
-    public void setAccId(int accId) {
-        this.accId = accId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getSortCode() {
@@ -104,8 +104,8 @@ public class Account {
     
      public String getFunctions() {
         functions = "<div class='function_buttons'><ul>";
-        functions += "<li class='function_edit'><a data-id='"+accId+" 'data-name='"+sortCode+"'><span>Edit</span></a></li>";
-        functions += "<li class='function_delete'><a data-id='"+accId+" 'data-name='"+sortCode+"'><span>Delete</span></a></li>";
+        functions += "<li class='function_edit'><a data-id='"+id+" 'data-name='"+sortCode+"'><span>Edit</span></a></li>";
+        functions += "<li class='function_delete'><a data-id='"+id+" 'data-name='"+sortCode+"'><span>Delete</span></a></li>";
         functions += "</ul></div>";
         return functions;
     }

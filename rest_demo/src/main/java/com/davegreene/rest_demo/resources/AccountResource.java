@@ -32,16 +32,16 @@ public class AccountResource {
     
     @GET
     @Path("/account/{accountId}")
-    public Account getAccount(@PathParam("accountId") int accId) {
-        System.out.println("Getting account with ID="+accId);
-        return accountService.getAccount(accId);
+    public Account getAccount(@PathParam("accountId") int id) {
+        System.out.println("Getting account with ID="+id);
+        return accountService.getAccount(id);
     }
     
     @PUT
     @Path("/account/{accountId}")
-    public Account setAccount(@PathParam("accoundId") int accId, Account m) {
-        System.out.println("Updating account with ID="+accId);
-        return accountService.updateAccount(accId,m);
+    public Account setAccount(@PathParam("accoundId") int id, Account m) {
+        System.out.println("Updating account with ID="+id);
+        return accountService.updateAccount(id,m);
     }
 
     @POST
@@ -53,9 +53,9 @@ public class AccountResource {
     
     @DELETE 
     @Path("/account/{accountId}")
-    public Account deleteAccount(@PathParam("accountId") int accId) {
-        System.out.println("Deleting account "+accId);
-	Account account = accountService.deleteAccount(accId);
+    public Account deleteAccount(@PathParam("accountId") int id) {
+        System.out.println("Deleting account "+id);
+	Account account = accountService.deleteAccount(id);
         return account;
     }
 }
