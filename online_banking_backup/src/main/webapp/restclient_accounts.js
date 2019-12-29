@@ -5,7 +5,7 @@ $(document).ready(function(){
     processing: true,
     ajax:{url:"api/account",dataSrc:""},
     "columns": [
-      { "data": "id" },
+      { "data": "accId" },
       { "data": "sortCode"},
       { "data": "accNum" },
       { "data": "curBal"},
