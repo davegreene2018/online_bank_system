@@ -1,5 +1,4 @@
 $(document).ready(function(){
-  
   var correctCustomer;
   var customerId;
     
@@ -8,7 +7,6 @@ $(document).ready(function(){
       e.preventDefault();
       var email = document.getElementById('email').value;
       var password = document.getElementById('password').value;
-      
       
       //return all customer here
        var request   = $.ajax({
@@ -42,6 +40,7 @@ $(document).ready(function(){
       });
       
   });
+  
   // On page load: datatable
   var table_customers = $('#table_customers').DataTable({
     processing: true,
@@ -142,7 +141,7 @@ $(document).ready(function(){
   });
   // Escape keyboard key
   $(document).keyup(function(e){
-    if (e.keyCode == 27){
+    if (e.keyCode === 27){
       hide_lightbox();
     }
   });
@@ -154,9 +153,11 @@ $(document).ready(function(){
     document.activeElement.blur();
     $('input').blur();
   }
+  
 
   // Add customer button
   $(document).on('click', '#add_customer', function(e){
+    console.log('Add customer clicked');
     e.preventDefault();
     $('.lightbox_content h2').text('Add Customer');
     $('#form_customer button').text('Add Customer');
@@ -172,6 +173,7 @@ $(document).ready(function(){
   });
 
   $(document).on('submit', '#form_customer.add', function(e){
+      console.log('Add customer clicked');
     e.preventDefault();
     // Validate form
     if (form_customer.valid() === true){
@@ -234,6 +236,10 @@ $(document).ready(function(){
       show_message('Request failed: ' + textStatus, 'error');
     });
   });
+
+  
+  
+  
   
   // Edit customer submit form
   $(document).on('submit', '#form_customer.edit', function(e){
@@ -269,6 +275,15 @@ $(document).ready(function(){
       });
     }
   });
+  
+  function pwShow() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
   
   // Delete customer
   $(document).on('click', '.function_delete a', function(e){
