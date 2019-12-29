@@ -14,7 +14,7 @@ import javax.transaction.Transaction;
  * @author Daveg
  */
 public class Account {
-    
+    //
     private int accId;
     private String sortCode;
     private int accNum;
